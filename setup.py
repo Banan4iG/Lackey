@@ -20,6 +20,8 @@ class BinaryDistribution(Distribution):
 install_requires = ['requests', 'pillow', 'numpy', 'opencv-python', 'keyboard', 'mouse', 'pyperclip', 'pytesseract']
 if platform.system() == "Darwin":
     install_requires += ['pyobjc']
+elif platform.system() == "Linux":
+    install_requires += ['python-xlib']
 
 setup(
     name="Lackey",
@@ -40,6 +42,7 @@ setup(
         "Intended Audience :: System Administrators",
         "License :: OSI Approved :: MIT License",
         "Operating System :: Microsoft :: Windows",
+        "Operating System :: Linux :: Linux",
         "Operating System :: MacOS :: MacOS X",
         "Topic :: Software Development :: Testing",
         "Topic :: Utilities",

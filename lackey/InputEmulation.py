@@ -3,9 +3,11 @@ Interfaces with ``keyboard`` to provide mid-level input emulation routines
 """
 import multiprocessing
 import time
-
 import keyboard
-from keyboard import mouse
+import mouse
+import pyautogui
+import platform
+
 
 # Python 3 compatibility
 try:
@@ -82,7 +84,10 @@ class Mouse(object):
         if loc is not None:
             self.moveSpeed(loc)
         self._lock.acquire()
-        mouse.click(button)
+        if platform.system() == "Linux":
+        	pyautogui.click(button=button)
+        else:
+        	mouse.click(button)
         self._lock.release()
     def buttonDown(self, button=mouse.LEFT):
         """ Holds down the specified mouse button.
